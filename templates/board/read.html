@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+{% block contents %}
+
+<!-- Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+
+    <div class="portfolio-modal fade show" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                {% if post %}
+                                <!-- Project details-->
+                                <h2 class="text-uppercase">{{ post.title }}</h2>
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>작성자:</strong>
+                                        {{ post.writer.user_id }}
+                                    </li>
+
+                                </ul>
+                                {% if post.boardimage_set %}
+                                {% for boardimage in post.boardimage_set.all %}
+
+                                <img class="img-fluid d-block mx-auto" src="{{ boardimage.image.url }}"
+                                     alt="...">
+
+                                {% endfor %}
+
+
+                                {% endif %}
+                                <p>{{post.contents | safe}}</p>
+
+
+                                {% if request.user == post.writer %}
+                                <a class="btn btn-primary btn-xl text-uppercase" href="/board/update/{{ post.id }}">
+                                    수정하기
+                                </a>
+                                <a class="btn btn-primary btn-xl text-uppercase" href="/board/delete/{{ post.id }}">
+                                    삭제하기
+                                </a>
+                                {% endif %}
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

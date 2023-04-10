@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block add_js %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+{% endblock %}
+
+{% block contents %}
+
+
+<!-- Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">게시판</h2>
+            <h3 class="section-subheading text-muted">자유 게시판입니다. 맘대로 쓰세요.</h3>
+        </div>
+        <div class="row">
+
+
+            <form id="contactForm" action="/board/register" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <!-- Name input-->
+                    <input class="form-control" id="title" type="text" placeholder="제목을 입력해주세요." name="title"
+                           data-sb-validations="required">
+                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <!-- Name input-->
+                    <input class="form-control" type="file" multiple name="image" data-sb-validations="required" id="image">
+                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <!-- Name input-->
+                    <input class="form-control" readonly type="text" name="writer" value="{{ request.session.user_id }}"
+                           data-sb-validations="required" id="writer">
+                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                </div>
+                <br>
+                <textarea id="summernote" name="contents"></textarea>
+                <script>
+      $('#summernote').summernote({
+        placeholder: '내용을 입력해주세요.',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+      });
+
+
+
+
+                </script>
+                <br>
+                <div class="form-group mb-md-0">
+                    <!-- Phone number input-->
+                    <button class="btn btn-primary w-100 btn-xl text-uppercase" id="submitButton" type="submit">
+                        작성하기
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+
