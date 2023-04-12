@@ -87,9 +87,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'web',
-        'USER': 'admin',
+        'USER': 'guest',
         'PASSWORD': 'qwer1234',
-        'HOST': 'mydb.cunahb9scatw.ap-northeast-2.rds.amazonaws.com',
+        'HOST': '200.200.200.57',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
@@ -156,20 +156,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     },
 # }
 
-
-
-
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://ec-project.5ed3ko.0001.apn2.cache.amazonaws.com:6379'
+        'LOCATION': 'redis://200.200.200.90:6379'
     }
 }
-
-
-
 AUTH_USER_MODEL = 'accounts.User'
 SITE_ID = 1
 
@@ -185,8 +179,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = '${{ secrets.MEIL }}'
-EMAIL_HOST_PASSWORD = '${{ secrets.PASSWORD }}'
+EMAIL_HOST_USER = 'jujuju914@gmail.com'
+EMAIL_HOST_PASSWORD = 'llacrkuxizrgavyh'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
